@@ -4,17 +4,37 @@
 }
 body{
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    margin-left: 16vh;
     align-items: center;
     background-color: rgb(255, 211, 154);
     min-height: 100vh;
     font-size:large;
 }
+.image {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 53.33vw; /* One-third of the page width */
+    height: 43.66vw; /* Half the width to create a semicircle */
+    overflow: hidden; 
+    border-bottom-left-radius: 100%;
+  }
+
+.image img {
+    position: absolute;
+    width: 100%;
+    height: 200%; /* Stretch to fill the semicircle */
+    object-fit: fill;
+    top: -50%; /*Move up to align image properly */
+    left: 0;
+    transform: scaleX(-1);
+  }
 .container{
     /* width: fit-content; */
     /* position: relative; */
     /* margin: 250px  800px; */
-    width: 40vh;
+    width: 50vh;
     min-height:45vh;
     background: white;
     padding: 2rem;
