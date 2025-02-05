@@ -36,9 +36,6 @@ body{
     transform: scaleX(-1);
   }
 .container{
-    /* width: fit-content; */
-    /* position: relative; */
-    /* margin: 250px  800px; */
     width: 50vh;
     min-height:45vh;
     background: white;
@@ -102,21 +99,7 @@ form button{
     border: none;
     cursor: pointer;
 }
-/* #record-btn {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 15px;
-    font-size: 18px;
-    background-color: rgb(161, 8, 113);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    transition: 0.3s;
-} */
-
-#record-btn:hover {
+form button:hover {
     background-color: rgb(201, 48, 150);
 }
 /* Modal container (hidden by default) */
@@ -160,4 +143,43 @@ form button{
     max-height: 300px;
     overflow-y: auto;
     padding-right: 10px;
+}
+
+
+/* Trends Modal */
+#trendsModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Close Button for Trends Modal */
+.close-trends-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: red;
+}
+.charts{
+    display: flex;
+    flex-direction: row;
+}
+/* Chart Styling */
+#fromCurrencyChart, #toCurrencyChart{
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    margin-top: 20px;
 }

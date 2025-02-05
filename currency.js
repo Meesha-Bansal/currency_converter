@@ -134,6 +134,131 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM fully loaded and parsed"); // Debugging
+
+    const seeTrendsBtn = document.getElementById("seeTrendsBtn");
+    const trendsModal = document.getElementById("trendsModal");
+    const closeTrendsBtn = document.querySelector(".close-trends-btn");
+
+    if (!seeTrendsBtn || !trendsModal || !closeTrendsBtn) {
+        console.error("One or more modal elements are missing in the HTML.");
+        return;
+    }
+
+    // Function to generate two separate charts
+    const generateCharts = (fromCurrencyData, toCurrencyData) => {
+        const fromCtx = document.getElementById("fromCurrencyChart").getContext("2d");
+        const toCtx = document.getElementById("toCurrencyChart").getContext("2d");
+
+        // Destroy previous chart instances if they exist
+        if (window.fromCurrencyChartInstance) window.fromCurrencyChartInstance.destroy();
+        if (window.toCurrencyChartInstance) window.toCurrencyChartInstance.destroy();
+
+        // Convert data to arrays for Chart.js
+        const fromLabels = Object.keys(fromCurrencyData);
+        const fromValues = Object.values(fromCurrencyData);
+
+        const toLabels = Object.keys(toCurrencyData);
+        const toValues = Object.values(toCurrencyData);
+
+        // Create 'From' Currency Chart
+        window.fromCurrencyChartInstance = new Chart(fromCtx, {
+            type: "bar",
+            data: {
+                labels: fromLabels,
+                datasets: [{
+                    label: "Exchanged From",
+                    data: fromValues,
+                    backgroundColor: "rgba(255, 99, 132, 0.6)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Create 'To' Currency Chart
+        window.toCurrencyChartInstance = new Chart(toCtx, {
+            type: "bar",
+            data: {
+                labels: toLabels,
+                datasets: [{
+                    label: "Exchanged To",
+                    data: toValues,
+                    backgroundColor: "rgba(54, 162, 235, 0.6)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    };
+
+    // Function to show trends modal with charts
+    const showTrends = () => {
+        let records = JSON.parse(localStorage.getItem("conversionRecords")) || [];
+        
+        if (records.length === 0) {
+            alert("No exchange records found.");
+            return;
+        }
+
+        console.log("Displaying trends..."); // Debugging
+
+        // Create separate frequency maps for "from" and "to" currencies
+        let fromCurrencyCount = {};
+        let toCurrencyCount = {};
+
+        records.forEach((rec) => {
+            fromCurrencyCount[rec.from] = (fromCurrencyCount[rec.from] || 0) + 1;
+            toCurrencyCount[rec.to] = (toCurrencyCount[rec.to] || 0) + 1;
+        });
+
+        // Show the modal
+        trendsModal.style.display = "block";
+
+        // Generate the charts
+        generateCharts(fromCurrencyCount, toCurrencyCount);
+    };
+
+    // Ensure the button works every time
+    seeTrendsBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        console.log("See Trends button clicked"); // Debugging
+        showTrends();
+    });
+
+    // Close the modal when close button is clicked
+    closeTrendsBtn.addEventListener("click", () => {
+        console.log("Close Trends button clicked"); // Debugging
+        trendsModal.style.display = "none";
+    });
+
+    // Ensure modal does not close when clicking inside modal-content
+    document.querySelector(".modal-content").addEventListener("click", (event) => {
+        event.stopPropagation();
+    });
+
+    // Optional: Close modal when clicking outside modal content
+    trendsModal.addEventListener("click", (event) => {
+        if (event.target === trendsModal) {
+            console.log("Clicked outside trends modal, closing...");
+            trendsModal.style.display = "none";
+        }
+    });
+});
+
 
         
 btn.addEventListener("click", (evt) => {
