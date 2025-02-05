@@ -4,10 +4,13 @@
 }
 body{
     display: flex;
-    justify-content: left;
-    margin-left: 16vh;
+    justify-content: right;
+    margin-right: 16vh;
     align-items: center;
-    background-color: rgb(255, 211, 154);
+    /* background-color: rgb(255, 211, 154); */
+    background-image:url("https://academy.education.investing.com/wp-content/uploads/2022/03/Exchange-rate-definition.jpg") ;
+    background-size: cover;
+    background-position: 30% 50%;
     min-height: 100vh;
     font-size:large;
 }
@@ -15,10 +18,12 @@ body{
     position: fixed;
     top: 0;
     right: 0;
-    width: 53.33vw; /* One-third of the page width */
-    height: 43.66vw; /* Half the width to create a semicircle */
+    /* width: 53.33vw;  One-third of the page width */
+    /*height: 43.66vw;  Half the width to create a semicircle */
+    width: 100%;
+    height: 100%;
     overflow: hidden; 
-    border-bottom-left-radius: 100%;
+    /* border-bottom-left-radius: 100%; */
   }
 
 .image img {
@@ -88,7 +93,7 @@ form select{
     max-width: 2rem;
 }
 form button{
-    margin: 30px 0 20px 0;
+    margin: 30px 0 2px 0;
     background-color: rgb(161, 8, 113);
     font-size: 26px;
     color: white;
@@ -96,4 +101,63 @@ form button{
     border-radius: 1rem;
     border: none;
     cursor: pointer;
+}
+/* #record-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    font-size: 18px;
+    background-color: rgb(161, 8, 113);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+} */
+
+#record-btn:hover {
+    background-color: rgb(201, 48, 150);
+}
+/* Modal container (hidden by default) */
+#recordsModal {
+    display: none; /* Hidden initially */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+#recordsModal.show-modal {
+    display: block !important;
+}
+
+/* Modal content */
+.modal-content {
+    position: relative;
+    padding: 20px;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: red;
+}
+
+/* Scrollable content */
+#recordsList {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
 }

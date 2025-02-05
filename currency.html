@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- <div class="image">
+        <img src="https://academy.education.investing.com/wp-content/uploads/2022/03/Exchange-rate-definition.jpg" alt="">
+    </div> -->
+    
     <div class="container">
         <h2>Currency Converter</h2>
         <form action="">
@@ -44,10 +48,19 @@
             </div>
             <div class="msg">1USD = 80INR</div>
             <button id="convert">Convert</button>
+            
+            <button id="record-btn">
+                View Records
+            </button>
+            
         </form>
     </div>
-    <div class="image">
-        <img src="https://academy.education.investing.com/wp-content/uploads/2022/03/Exchange-rate-definition.jpg" alt="">
+    <div id="recordsModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Conversion History</h3>
+            <div id="recordsList"></div>
+        </div>
     </div>
     <script src="codes.js"></script>
     <script src="currency.js"></script>
