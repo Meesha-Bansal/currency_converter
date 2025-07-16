@@ -12,7 +12,7 @@ body{
     background-size: cover;
     background-position: 30% 50%;
     /* min-height: 100px; */
-    overflow: hidden;
+   
     font-size:large;
 }
 .image {
