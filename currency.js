@@ -64,6 +64,11 @@ const updateExchangeRate = async () => {
         // console.log(rate);
         let finalAmount = amtVal * rate;
         msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
+
+        // auto refresh the last updated time stamp
+        let lastUpdated = document.getElementById("lastUpdated");
+        lastUpdated.innerText = `Last updated: ${new Date().toLocaleTimeString()}`;
+
             // Store conversion record
         storeConversion(amtVal, fromCurr.value, toCurr.value, finalAmount);
         }
@@ -259,6 +264,52 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM fully loaded and parsed"); // Debugging
+
+    const modalOverlay = document.createElement("div");
+    modalOverlay.id = "modalOverlay";
+    document.body.appendChild(modalOverlay);
+
+    const recordsModal = document.getElementById("recordsModal");
+    const trendsModal = document.getElementById("trendsModal");
+    const viewRecordsBtn = document.getElementById("record-btn");
+    const seeTrendsBtn = document.getElementById("seeTrendsBtn");
+    const closeRecordsBtn = document.querySelector(".close-btn");
+    const closeTrendsBtn = document.querySelector(".close-trends-btn");
+
+    const showModal = (modal) => {
+        modal.style.display = "block";
+        modalOverlay.style.display = "block"; // Show translucent background
+    };
+
+    const closeModal = (modal) => {
+        modal.style.display = "none";
+        modalOverlay.style.display = "none"; // Hide translucent background
+    };
+
+    if (viewRecordsBtn) {
+        viewRecordsBtn.addEventListener("click", () => showModal(recordsModal));
+    }
+
+    if (seeTrendsBtn) {
+        seeTrendsBtn.addEventListener("click", () => showModal(trendsModal));
+    }
+
+    if (closeRecordsBtn) {
+        closeRecordsBtn.addEventListener("click", () => closeModal(recordsModal));
+    }
+
+    if (closeTrendsBtn) {
+        closeTrendsBtn.addEventListener("click", () => closeModal(trendsModal));
+    }
+
+    // Close when clicking outside the modal
+    modalOverlay.addEventListener("click", () => {
+        closeModal(recordsModal);
+        closeModal(trendsModal);
+    });
+});
 
         
 btn.addEventListener("click", (evt) => {
@@ -269,6 +320,12 @@ btn.addEventListener("click", (evt) => {
 window.addEventListener("load", () => {
     updateExchangeRate();
 });
+
+// Auto-refresh exchange rate every 5 seconds
+setInterval(() => {
+    updateExchangeRate();
+}, 5000);
+
 
 // let recordBtn = document.getElementById("record-btn");
 // recordBtn.addEventListener("click", showRecords);
