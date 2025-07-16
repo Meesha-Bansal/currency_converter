@@ -12,6 +12,7 @@ body{
     background-size: cover;
     background-position: 30% 50%;
     /* min-height: 100px; */
+    overflow: hidden;
     font-size:large;
 }
 .image {
@@ -96,7 +97,7 @@ form input, button, select {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 .amount p {
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 300;
     color :rgb(255, 255, 254)
 }
