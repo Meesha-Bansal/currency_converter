@@ -11,7 +11,7 @@ body{
     background-image:url("https://academy.education.investing.com/wp-content/uploads/2022/03/Exchange-rate-definition.jpg") ;
     background-size: cover;
     background-position: 30% 50%;
-    min-height: 100vh;
+    /* min-height: 100px; */
     font-size:large;
 }
 .image {
@@ -36,6 +36,8 @@ body{
     transform: scaleX(-1);
   }
 .container {
+    margin-top: 40px;
+
     width: 340px;
     max-width: 90vw;
     background: rgba(255, 255, 255, 0.1); /* translucent white */
@@ -52,6 +54,9 @@ body{
     color: white;
     align-self: flex-start;
     flex-shrink: 0;
+    min-height: auto; /* Add this to fix full-height issue */
+    height: auto;      /* Explicitly allow it to size to content */
+
 }
 /*
 .container {
@@ -120,7 +125,7 @@ form select{
     flex-direction: row;
     border: 1px solid rgb(164, 163, 163);
     border-radius: 13px;
-    height: 2vh;
+    height: auto;
     /* background-color: blue; */
     padding: 0.5rem;
     justify-content: space-between;
